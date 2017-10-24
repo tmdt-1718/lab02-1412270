@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webapp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		function hide_show() {
+			var e = document.getElementById("topNavBar");
+			if(e.style.display == 'block')
+				e.style.display = 'none';
+			else
+				e.style.display = 'block';
+		}
+	</script>
+  </head>
+
+  <body>
+  	<div class="container">
+  		<nav class="navbar navbar-default" id="topNavBar">
+  			<ul class="nav navbar-nav">
+  				<li><a href="/home"> Home </a></li>
+  				<li><a href="/friend"> Friend </a></li>
+  				<li><a href="/message"> Message </a></li>	
+  				<li><a href="/about"> About </a></li>
+  			</ul>
+  			<nav class="nav navbar-nav navbar-right" style="margin-right: 5px;">
+  				<li></li>
+  				<li><a href="login"> Login </a></li>
+  				<li><a href="users/new"> Sign Up </a></li>
+  			</nav>
+  			
+  		</nav>
+  		<button type="button" class="btn btn-primary btn-md" id="hideBt" onclick="hide_show()"> show </button>
+			<div class="row">
+			  <div class="col-sm-2">
+			    
+			  </div>
+			  <div class="col-sm-9">
+			  	<%= yield %>
+			  </div>
+			</div>
+		<section class="content" style="min-height: auto;">
+		    <% flash.each do |key, value| %>
+		        <div class="row">
+		          <div class="alert alert-<%= key %>">
+		            <%= value %>
+		          </div>
+		        </div>
+		    <% end %>
+	    </section>
+  </body>
+</html>
+
+<style>
+	#topNavBar {
+
+	}
+
+	@media only screen and (max-width: 992px) {
+		#topNavBar {
+			display: none;
+		}
+	}
+
+	@media only screen and (min-width: 992px){
+		#hideBt {
+			display: none;
+		}
+	}
+</style>
