@@ -13,6 +13,8 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		function hide_show() {
 			var e = document.getElementById("topNavBar");
@@ -28,16 +30,18 @@
   	<div class="container">
   		<nav class="navbar navbar-default" id="topNavBar">
   			<ul class="nav navbar-nav">
-  				<li><a href="/home"> Home </a></li>
+  				<li><a href="/"> Home </a></li>
   				<li><a href="/friend"> Friend </a></li>
   				<li><a href="/message"> Message </a></li>	
   				<li><a href="/about"> About </a></li>
-  			</ul>
-  			<nav class="nav navbar-nav navbar-right" style="margin-right: 5px;">
-  				<li></li>
-  				<li><a href="login"> Login </a></li>
-  				<li><a href="users/new"> Sign Up </a></li>
-  			</nav>
+  			
+	  			<% if logged_in? %>
+	 				<li><%= link_to "Logout", logout_path, method: :delete %></li>
+	 			<% else %>
+	 				<li><a href="users/new"> Sign Up</a></li>
+	 				<li><a href="login"> Login</a></li>
+	 			<%end%>
+ 			</ul>
   			
   		</nav>
   		<button type="button" class="btn btn-primary btn-md" id="hideBt" onclick="hide_show()"> show </button>
